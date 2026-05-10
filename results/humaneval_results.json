@@ -1,0 +1,32 @@
+[
+  {
+    "task": "add",
+    "shots": 0,
+    "code": "The sum of a and b was returned."
+  },
+  {
+    "task": "reverse",
+    "shots": 0,
+    "code": "Return the reverse of string s."
+  },
+  {
+    "task": "filter_even",
+    "shots": 0,
+    "code": "to 1000, inclusive."
+  },
+  {
+    "task": "add",
+    "shots": 3,
+    "code": "return a + b\n\ndef subtract(a, b):\n    \"\"\"Return the difference of a and b\"\"\"\n    return a - b\n\ndef divide(a, b):\n    \"\"\"Return the quotient of a divided by b\"\"\"\n    return a/b\n\ndef involve(a, b):\n    \"\"\"Return the power of a raised to b\"\"\"\n    return a\"b\n\ndef raise to power(a, b):\n    \"\"\"Return the nth power of a raised to b"
+  },
+  {
+    "task": "reverse",
+    "shots": 3,
+    "code": "return len-rev\n\ndef is_negative(n):\n   "
+  },
+  {
+    "task": "filter_even",
+    "shots": 3,
+    "code": "I return an even list from the input list"
+  }
+]

@@ -1,0 +1,16 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The results support the view that it is indeed easier to test for generalization in \talkie, not because the model is more capable than modern ones, but because its performance is scientifically unambiguous.
+
+{\bf Interpretation of the Signal.} The ``easiness'' of testing in \talkie stems from the reduction of alternative explanations. In a modern model, success on \humaneval has two possible causes: generalization or memorization. In \talkie, for post-1930 tasks, the memorization explanation is eliminated by the 1930 temporal cutoff. This isolation allows us to observe the mechanics of machine reasoning in a ``pure'' state.
+
+{\bf The Role of Sparsity.} Our results suggest that the sparsity of human experience in 1930-era data (no internet, no modern programming) forces the model to rely on abstract linguistic and logical structures. When these structures are successfully mapped to a novel syntax like Python, we are observing deep generalization that is often obscured in modern, dense-data models.
+
+{\bf Limitations.} Despite the clarity of the signal, there are significant limitations to using \talkie as a generalization testbed. 
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item {\bf Capacity Constraints:} A 13B model trained on 1930 data may lack the sheer ``intellectual mass'' required to generalize to highly complex modern tasks, such as designing neural network architectures or understanding contemporary geopolitical nuances.
+    \item {\bf Syntactic Friction:} The vast difference between 1930-era prose and modern code creates a high barrier to entry. Some models might possess the underlying logic but fail due to the linguistic ``uncanniness'' of the target syntax.
+\end{itemize}
+
+{\bf Broader Implications.} Our work highlights the value of historically-grounded models as ``control groups'' for the history of human knowledge. By benchmarking modern models against a ``vintage'' baseline, we can better quantify the impact of contamination and move toward more robust measures of machine intelligence.

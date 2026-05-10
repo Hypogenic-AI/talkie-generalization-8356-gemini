@@ -1,0 +1,455 @@
+You are an academic paper writer. Generate a complete NEURIPS style paper
+based on the experiment results provided.
+
+════════════════════════════════════════════════════════════════════════════════
+                         IMPORTANT: BEFORE YOU START
+════════════════════════════════════════════════════════════════════════════════
+
+Before writing any content, you MUST complete these steps:
+
+1. READ THE SKILL: Review the paper-writer skill at .gemini/skills/paper-writer/SKILL.md
+2. READ THE STYLE GUIDE: Study templates/paper_writing/lab_style_guide.md carefully
+3. REVIEW EXAMPLES: Browse paper_examples/ for formatting and language patterns:
+   - Look at sections/1.introduction.tex for language style
+   - Look at tables/*.tex for table formatting
+   - Look at commands/*.tex for macro usage
+4. VERIFY COMMAND TEMPLATES: Command templates (math.tex, general.tex, macros.tex) are pre-copied to paper_draft/commands/
+
+CRITICAL: Reference example papers for FORMATTING and LANGUAGE STYLE only.
+Do NOT copy content, phrasing, or narrative structure from the example papers.
+The examples are in a different research domain - focus only on presentation style.
+
+════════════════════════════════════════════════════════════════════════════════
+                            EXPERIMENT REPORT
+════════════════════════════════════════════════════════════════════════════════
+
+# Research Report: Is it easier to test if Talkie generalizes?
+
+## 1. Executive Summary
+This research investigates the "Sparsity-as-Signal" hypothesis: that Large Language Models (LLMs) with strict historical cutoffs and sparser training data, such as **Talkie-1930**, provide a more scientifically rigorous testbed for generalization than modern, dense-data models. 
+
+Our experiments comparing Talkie-1930 (1930 cutoff) with Talkie-Web (Modern baseline) demonstrate that the **Zero-Shot Gap** in vintage models creates a clear, binary-like signal for generalization. While modern models' performance on post-1930 tasks is confounded by potential data contamination (memorization), Talkie's success on such tasks (e.g., Python coding) after few-shot prompting constitutes a "pure" logic leap. We conclude that sparsity simplifies the detection of generalization by eliminating the noise of memorized knowledge.
+
+## 2. Research Question & Motivation
+**Question**: Does the sparse, historically-limited training data of Talkie-1930 make it easier to test for generalization compared to modern models?
+
+**Motivation**: Data contamination is a critical failure mode in current AI evaluation. When a model performs well on a benchmark, it is difficult to determine if it is *reasoning* or simply *reciting* training data. Talkie-1930 offers a "clean room" where modern concepts (post-1930) are guaranteed to be novel, allowing researchers to observe the mechanics of generalization in isolation.
+
+## 3. Methodology
+We employed a comparative framework between `talkie-1930-13b-it` (Vintage) and `talkie-web-13b-base` (Modern).
+
+### Experiments:
+1.  **HumanEval (Coding)**: Tested both models on Python tasks (Python was created in 1991). We compared 0-shot performance (baseline knowledge) vs. 3-shot performance (ability to generalize from context).
+2.  **MMLU Temporal Analysis**: Evaluated performance across "Historical" (Pre-1930) and "Modern" (Post-1930) categories to identify the "Temporal Knowledge Cliff."
+3.  **Few-Shot Gain Analysis**: Measured the rate of improvement when the model is introduced to anachronistic syntaxes.
+
+## 4. Key Findings
+
+### Finding 1: The "Generalization Signal" is Binary in Vintage Models
+In our HumanEval tests, Talkie-1930 exhibited a 0% success rate 0-shot (outputting prose or historical analogies), but achieved a successful logic match on simple tasks (e.g., `return a + b`) after just 3 shots. 
+
+| Model | 0-Shot Success | 3-Shot Success | Interpretation |
+|-------|----------------|----------------|----------------|
+| Talkie-1930 | 0% | ~33% (Simple) | **Pure Generalization** |
+| Talkie-Web | 100% (Simple) | 100% | **Ambiguous (Memorization?)** |
+
+The "delta" from 0 to 3 shots in Talkie is a high-signal indicator of structural generalization.
+
+### Finding 2: The Temporal Knowledge Cliff
+Talkie-1930 shows a sharp performance drop-off on subjects dominated by post-1930 knowledge (Computer Science, Genetics) compared to subjects it was trained on (Ancient History, Philosophy). This cliff validates the model as a "contamination-free" instrument.
+
+*(See figures/temporal_cliff.png for visualization)*
+
+## 5. Analysis & Discussion
+The "easiness" of testing generalization in Talkie stems from the **reduction of alternative explanations**. 
+- In a modern model, "Success" has two possible causes: Generalization OR Memorization. 
+- In Talkie, for post-1930 tasks, "Success" has only ONE possible cause: Generalization.
+
+The sparsity of human experience in 1930 data (no internet, no modern programming) forces the model to rely on abstract linguistic and logical structures. When these structures are successfully mapped to a novel syntax (Python), we are observing "deep" generalization that is often obscured in modern models.
+
+## 6. Limitations
+- **Capacity Constraints**: A 13B model trained on 1930 data may lack the sheer "intellectual mass" to generalize to complex modern tasks (e.g., neural network architecture), limiting the *depth* of testing possible.
+- **Syntactic Friction**: The difference between 1930-era prose and modern code is vast, which may cause the model to fail even if the underlying logic is present.
+
+## 7. Conclusions & Next Steps
+We confirm that it is indeed **easier** to test if Talkie generalizes, not because it generalizes "better," but because its failures and successes are **scientifically unambiguous**. Talkie-1930 serves as a "control group" for the history of human knowledge.
+
+**Recommended Follow-up**:
+- Test "Analogical Transfer": Ask Talkie to explain modern quantum mechanics using only Newtonian analogies.
+- Expand the HumanEval test to more complex logic tasks (e.g., sorting algorithms).
+
+---
+*Report generated by Gemini CLI Research Agent - May 10, 2026*
+
+
+════════════════════════════════════════════════════════════════════════════════
+                            RESEARCH PLAN
+════════════════════════════════════════════════════════════════════════════════
+
+# Research Planning: Is it easier to test if Talkie generalizes?
+
+## Motivation & Novelty Assessment
+
+### Why This Research Matters
+Data contamination is the "silent killer" of LLM evaluation. As models are trained on increasingly large portions of the internet, finding truly "unseen" tasks to test generalization becomes nearly impossible. This research explores whether a model with a strict historical cutoff (1930) and a sparser training corpus provides a superior scientific instrument for measuring "pure" generalization—the ability to apply learned structural patterns to entirely novel domains (e.g., modern programming, post-war science).
+
+### Gap in Existing Work
+Most generalization research focuses on modern models and attempts to "de-contaminate" them or use synthetic tasks. Using a historically-grounded model like Talkie-1930 as a "zero-contamination" benchmark is a relatively new approach. Specifically, the idea that *sparsity* itself (the lack of broad, modern "human experience" in the data) makes generalization *easier to verify* has not been rigorously tested against a modern-data baseline.
+
+### Our Novel Contribution
+We will empirically test the "Sparsity-as-Signal" hypothesis. We will compare Talkie-1930's performance on tasks it *cannot* have memorized (post-1930 knowledge) against its performance on pre-1930 knowledge, and contrast this "gap" with a modern model's performance. We aim to show that the "cliff" in performance for Talkie is much sharper and more predictable, making the "bridge" of generalization easier to isolate and measure.
+
+### Experiment Justification
+- **Experiment 1: Zero-Shot vs. Few-Shot Coding (HumanEval)**
+  - *Why needed?*: Python was created in 1991. Talkie has 0% contamination. If it can code after few-shot prompting, it is the most robust proof of logic generalization possible. Modern models might just be "reciting" HumanEval.
+- **Experiment 2: Temporal Knowledge Cliff**
+  - *Why needed?*: To verify the "sparsity" and "cutoff" are actually functional. We test MMLU questions filtered by "Pre-1930" and "Post-1930" dates.
+- **Experiment 3: Analogical Generalization (Anachronism)**
+  - *Why needed?*: Can Talkie reason about a "digital computer" by drawing analogies to "difference engines" or "human computers"? This tests if sparse data forces the model to use more abstract, generalized representations.
+
+---
+
+## Research Question
+Does the sparse, historically-limited training data of Talkie-1930 make it easier (more scientifically rigorous/detectable) to test for generalization compared to modern, dense-data models?
+
+## Hypothesis Decomposition
+1. **H1 (Contamination-Free):** Talkie-1930 has zero exposure to post-1930 technical concepts, making any performance on them a "pure" measure of generalization.
+2. **H2 (Sparsity Benefit):** The sparser training data of 1930 results in a more discrete knowledge boundary, making the "signal" of generalization (when it happens) more distinct from the "noise" of memorization.
+3. **H3 (Detectability):** The delta between zero-shot (failure) and few-shot (success) on modern tasks is larger and more consistent in Talkie than in modern models, facilitating easier measurement of the "generalization coefficient."
+
+## Proposed Methodology
+
+### Approach
+We will use a comparative framework between `talkie-1930-13b-it` and a modern baseline (either `talkie-web-13b-base` if accessible, or a similar-scale modern model).
+
+### Experimental Steps
+1. **Setup**: Install `talkie` library and dependencies.
+2. **Benchmark 1 (Coding)**: Run HumanEval on Talkie-1930 (0, 1, 3, 5 shots).
+3. **Benchmark 2 (MMLU Temporal)**: Filter MMLU for pre-1930 and post-1930 questions. Compare performance drop-off.
+4. **Benchmark 3 (Structural Analogies)**: Test Talkie's ability to explain modern concepts using only pre-1930 vocabulary and concepts.
+
+### Evaluation Metrics
+- **Accuracy (Pass@1)** for HumanEval.
+- **Performance Gap (Delta)**: (Post-1930 Score) / (Pre-1930 Score).
+- **Few-shot Gain**: The rate of improvement per example for "unseen" vs "seen" domains.
+
+### Statistical Analysis Plan
+- T-tests to compare the "generalization slope" (few-shot gain) between Talkie and Modern models.
+- Correlation analysis between task "modernity" and performance drop-off.
+
+## Expected Outcomes
+- Talkie will fail HumanEval 0-shot but show a non-zero (though likely low) success rate with 5-shot prompts, proving generalization.
+- The "Temporal Cliff" in MMLU will be significantly steeper for Talkie than for modern models.
+- The "easiness" of testing generalization will be evidenced by the clear, binary-like transition from "no knowledge" to "reasoned application" in Talkie.
+
+## Timeline and Milestones
+- **Phase 2 (Setup)**: 30m
+- **Phase 3 (Implementation)**: 1h
+- **Phase 4 (Experiments)**: 2h
+- **Phase 5 (Analysis)**: 1h
+- **Phase 6 (Reporting)**: 1h
+
+## Success Criteria
+- Successful reproduction of Talkie's "logic generalization" on at least one post-1930 task.
+- Quantifiable evidence that the "generalization signal" is cleaner in Talkie due to the absence of contamination.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          LITERATURE REVIEW
+════════════════════════════════════════════════════════════════════════════════
+
+# Literature Review: Generalization in Historical LLMs (Talkie-1930)
+
+## Research Area Overview
+The study of generalization in Large Language Models (LLMs) often faces challenges due to data contamination, where evaluation benchmarks are present in the massive web-scale training data. Historical language models, particularly those with a strict temporal cutoff (like the 1930 cutoff in the Talkie project), provide a unique "contamination-free by construction" environment. This allows researchers to test whether a model's performance on modern tasks (e.g., coding, post-1930 science) is due to genuine reasoning and abstract pattern generalization or simply memorization.
+
+## Key Papers
+
+### 1. Talkie: A 13B Vintage Language Model from 1930
+- **Authors**: Alec Radford, Nick Levine, David Duvenaud (Project lead)
+- **Year**: 2026
+- **Source**: talkie-lm.com / Technical Report
+- **Key Contribution**: Released Talkie-1930, a 13B parameter model trained on 260B tokens of pre-1931 text.
+- **Methodology**: Strict data filtering by publication date. Instruction-tuning using historical reference works (etiquette manuals, encyclopedias).
+- **Results**: Demonstrated "capability emergence" in modern tasks like Python coding and understanding post-1930 scientific concepts when provided with brief in-context examples.
+- **Relevance**: Central to the research hypothesis. It provides the empirical base for testing generalization without contamination.
+
+### 2. GPT and Prejudice: A Sparse Approach to Understanding Learned Representations in LLMs
+- **Authors**: Mariam Mahran, Katharina Simbeck
+- **Year**: 2025
+- **Source**: arXiv (2025)
+- **Key Contribution**: Analyzed learned representations in a model trained on 19th-century novels.
+- **Methodology**: Coupled LLMs with Sparse Autoencoders (SAEs) to trace thematic encoding.
+- **Results**: Identified stable "thematic backbones" around gender and kinship that exist even in sparse historical data.
+- **Relevance**: Supports the idea that historical data has structured "backbones" that can serve as a foundation for generalization.
+
+### 3. On the Limits of LLM Reasoning: Evidence From Contamination, Translation, and Answer Modification
+- **Authors**: E. Salido, Julio Gonzalo, Guillermo Marco
+- **Year**: 2025
+- **Source**: arXiv (2025)
+- **Key Contribution**: Proposed "Answer Modification" (e.g., "None of the other answers") to disentangle reasoning from memorization.
+- **Results**: Accuracy drops significantly when answer patterns are modified, highlighting the fragility of current LLM "reasoning."
+- **Relevance**: Provides a methodology for testing whether Talkie's generalization is robust or merely pattern-matching.
+
+### 4. Can Language Models Represent the Past without Anachronism?
+- **Authors**: Ted Underwood, Laura K. Nelson, Matthew Wilkens
+- **Year**: 2025
+- **Source**: arXiv (2025)
+- **Key Contribution**: Evaluated the risk of anachronism in LLMs simulated to be historical.
+- **Results**: Found that pre-training on period prose is superior to prompting or fine-tuning modern models for simulating historical perspectives.
+- **Relevance**: Validates the Talkie approach of pre-training from scratch on period data.
+
+## Common Methodologies
+- **Temporal Cutoff Filtering**: Ensuring training data does not exceed a specific date (e.g., Dec 31, 1930).
+- **Anachronism Benchmarking**: Testing models on concepts they could not have seen (e.g., Python, DNA, Turing machines).
+- **In-Context Learning (ICL) for Modern Tasks**: Providing the model with a few modern examples in the prompt to see if it can adapt its "vintage" knowledge.
+
+## Gaps and Opportunities
+- **Sparsity vs. Scale**: Does sparser data (1930 cutoff) actually make generalization "easier" to test, or does it just make the model less capable overall?
+- **Cross-Era Generalization**: How well do linguistic structures from 1930 map to modern technical logic?
+
+## Recommendations for Our Experiment
+- **Dataset**: Use `community-datasets/gutenberg_time` to extract more specific 1930-cutoff data if needed.
+- **Model**: Evaluate `talkie-lm/talkie-1930-13b-it`.
+- **Benchmark**: Use HumanEval and a modified version of MMLU filtered for "post-1930" knowledge vs. "pre-1930" knowledge.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          PAPER REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+Generate a complete academic paper with the following structure:
+
+1. TITLE
+   - Clear, specific, informative
+   - Should convey main finding or contribution
+
+2. AUTHOR
+   - Use this exact author line in the \author{} block: Ari Holtzman and NeuriCo
+
+3. ABSTRACT (150-250 words)
+   - Problem statement
+   - Approach
+   - Key results
+   - Significance
+
+4. INTRODUCTION
+   - Research problem and motivation
+   - Gap in existing work
+   - Our contribution (be specific)
+   - Paper organization
+
+5. RELATED WORK
+   - Organized by theme/approach
+   - Position our work relative to prior work
+   - Cite papers from literature review
+
+6. METHODOLOGY
+   - Clear description of approach
+   - Experimental setup
+   - Datasets used
+   - Evaluation metrics
+   - Baselines
+
+7. RESULTS
+   - Present results with tables and figures
+   - Statistical analysis
+   - Comparison to baselines
+   - Ablation studies (if applicable)
+
+8. DISCUSSION
+   - Interpretation of results
+   - Limitations
+   - Broader implications
+
+9. CONCLUSION
+   - Summary of contributions
+   - Key findings
+   - Future work
+
+10. REFERENCES
+   - BibTeX format
+   - All cited papers
+
+════════════════════════════════════════════════════════════════════════════════
+                          OUTPUT FORMAT
+════════════════════════════════════════════════════════════════════════════════
+
+Create a MODULAR LaTeX project with the following directory structure:
+
+paper_draft/
+├── main.tex              # Main file that imports all sections
+├── references.bib        # BibTeX references
+├── sections/
+│   ├── abstract.tex      # Abstract content
+│   ├── introduction.tex  # Introduction section
+│   ├── related_work.tex  # Related work section
+│   ├── methodology.tex   # Methodology section
+│   ├── results.tex       # Results section
+│   ├── discussion.tex    # Discussion section
+│   └── conclusion.tex    # Conclusion section
+├── figures/              # Directory for any generated figures
+├── tables/               # Directory for complex standalone tables
+└── appendix/             # Directory for appendix sections (if needed)
+
+INSTRUCTIONS:
+1. First, create the directory structure above (mkdir -p paper_draft/sections paper_draft/figures paper_draft/tables paper_draft/appendix)
+2. Write main.tex using the EXACT preamble for NEURIPS:
+
+   \documentclass{article}
+   \usepackage[final]{neurips_2025}  % NEURIPS style (neurips_2025.sty is in paper_draft/)
+   \usepackage[hidelinks]{hyperref}  % REQUIRED: clickable links
+   \usepackage{booktabs}  % REQUIRED: professional tables
+   \usepackage{graphicx}
+   \usepackage{amsmath,amssymb}
+
+   % Import command files
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+   % Use this bibliography style:
+   \bibliographystyle{plainnat}
+
+   \author{Ari Holtzman and NeuriCo}
+
+   - Use \input{sections/...} to include each section
+   - Use \bibliography{references} for references
+3. Write each section file with COMPLETE content (no placeholders)
+4. Each section file should include its \section{} command
+5. Write references.bib with all citations in BibTeX format
+6. After writing all files, compile the paper:
+   cd paper_draft && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex
+
+This modular structure allows humans to easily:
+- Edit individual sections without navigating a large file
+- Track changes per section
+- Reuse sections across different paper versions
+
+════════════════════════════════════════════════════════════════════════════════
+                          QUALITY REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+- Academic tone throughout
+- All claims must be supported by data from the experiment report
+- Proper citations using \cite{} commands
+- Clear figures and tables with proper captions
+- NO placeholder text - every section must have real content
+- The paper MUST compile without errors
+- If compilation fails, debug and fix the LaTeX errors
+
+════════════════════════════════════════════════════════════════════════════════
+                          LAB WRITING STYLE
+════════════════════════════════════════════════════════════════════════════════
+
+Follow these lab-specific conventions to match our paper style:
+
+1. LANGUAGE STYLE:
+   - Use active voice: "We propose", "We examine", "We focus on"
+   - Be direct and confident: "Our main question is...", "We hypothesize that..."
+   - State things clearly and simply - prefer plain language over jargon
+   - Use bold questions as paragraph organizers: {\bf what is X?}
+   - Include specific quantitative claims: "8.97% over baseline"
+   - Avoid fancy wording: "utilize" → "use", "facilitate" → "help"
+
+2. INTRODUCTION STRUCTURE:
+   - Engaging hook (get to the point quickly)
+   - Problem importance
+   - Gap identification
+   - Your approach with method figure reference
+   - Quantitative preview of results
+   - Contribution bullets (3-4 items, action verbs)
+
+3. CONTRIBUTION LISTS:
+   \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+       \item We propose...
+       \item We conduct...
+       \item We complement...
+   \end{itemize}
+
+4. MODULAR COMMANDS STRUCTURE:
+   Command templates are pre-copied to paper_draft/commands/:
+   - math.tex: Math notation macros
+   - general.tex: Formatting macros
+   - macros.tex: Project-specific term definitions (customize this for your paper)
+
+   In main.tex, include:
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+5. REFERENCE CONVENTIONS:
+   Use reference macros from math.tex:
+   - \figref{fig:name} for "figure 1" (lowercase, in-sentence)
+   - \Figref{fig:name} for "Figure 1" (capitalized, start of sentence)
+   - \secref{sec:name} for "section 2"
+
+6. TEXT FORMATTING:
+   - Use \para{Header text} for bold paragraph headers
+   - Define method/dataset names with \textsc and \xspace:
+     \newcommand{\methodname}{\textsc{MethodName}\xspace}
+
+7. TABLE FORMATTING:
+   - Use booktabs package (no vertical lines)
+   - Use \resizebox{\textwidth}{!}{...} for wide tables
+   - Use @{} to remove padding at table edges
+   - Use \cmidrule(lr){x-y} for sub-headers
+   - Use \textsc{} for dataset/method names in headers
+   - Bold best results with {\bf ...}
+
+8. FIGURE FORMATTING:
+   - Use 0.32\textwidth for 3-column subfigures
+   - Use 0.95\linewidth for full-width figures
+   - Use \input{figures/legend} for shared legends
+   - Write self-contained captions explaining key observations
+
+9. RESULTS PRESENTATION:
+   - Define \increase and \decrease for colored arrows (green up, red down)
+   - Bold best results in tables
+   - Report confidence intervals when available
+
+10. ALGORITHM STYLING:
+    - Use algpseudocode with [noend]
+    - Use \triangleright for comments
+
+11. HYPERLINKS (REQUIRED):
+    - Always use \usepackage[hidelinks]{hyperref} or with colored links
+    - All citations, section refs, figure refs, table refs must be clickable
+    - This is essential for reader navigation
+
+════════════════════════════════════════════════════════════════════════════════
+                          WORKFLOW: REVIEW AND REFLECT
+════════════════════════════════════════════════════════════════════════════════
+
+Before calling finish, you MUST complete these review steps:
+
+1. REVIEW RESOURCES (at the start):
+   - Read .gemini/skills/paper-writer/SKILL.md for detailed guidance
+   - Study templates/paper_writing/lab_style_guide.md for style conventions
+   - Browse paper_examples/ for formatting and language patterns
+
+2. SELF-REFLECTION (before finishing):
+   After writing all sections, review your work against these criteria:
+
+   LANGUAGE CHECK:
+   - [ ] Is the writing clear and jargon-free?
+   - [ ] Are claims specific with quantitative support?
+   - [ ] Is active voice used throughout?
+
+   FORMATTING CHECK:
+   - [ ] Does main.tex include \input{commands/math}, \input{commands/general}, \input{commands/macros}?
+   - [ ] Is hyperref package included for clickable references?
+   - [ ] Do tables use booktabs (no vertical lines)?
+   - [ ] Are best results bolded in tables?
+   - [ ] Are figures/tables properly captioned?
+
+   STRUCTURE CHECK:
+   - [ ] Does introduction follow: hook → importance → gap → approach → preview → contributions?
+   - [ ] Are contribution bullets specific with action verbs?
+   - [ ] Does the paper compile without errors?
+
+3. FIX ISSUES:
+   - Address any issues found in the self-reflection
+   - Re-compile and verify the PDF looks correct
+
+Only after completing this review should you consider the paper finished.

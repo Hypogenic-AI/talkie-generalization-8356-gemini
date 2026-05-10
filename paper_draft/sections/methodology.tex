@@ -1,0 +1,22 @@
+\section{Methodology}
+\label{sec:method}
+
+We employ a comparative framework between \talkie (13B, 1930 cutoff) and \talkieweb (Modern baseline) to evaluate the visibility of structural generalization.
+
+{\bf Task Selection.} We select tasks that are chronologically isolated from the 1930 training corpus:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \humaneval: Python coding tasks. Python (1991) is 60 years outside the training window.
+    \item \mmlu Temporal Analysis: Multi-choice questions categorized into ``Historical'' (Pre-1930) and ``Modern'' (Post-1930) topics.
+\end{itemize}
+
+{\bf Experimental Design.} We test two primary indicators of generalization:
+1. {\bf \zeroshot vs. \fewshot Gap:} We measure the performance delta between \zeroshot and 3-shot prompting on \humaneval. A model that fails in \zeroshot but succeeds in \fewshot is mapping the provided logic to a novel domain—a clear signal of generalization.
+2. {\bf The \cliff:} We compare the performance ratio (Modern/Historical) across both models. A sharp drop-off in \talkie validates its status as a ``clean'' instrument for non-contaminated testing.
+
+{\bf Model Details.} \talkie is an instruction-tuned model trained on 260B tokens of pre-1931 text \cite{radford2026talkie}. The instruction tuning uses historical reference works (e.g., etiquette manuals, 1911 Encyclopedia Britannica) to maintain the vintage persona. \talkieweb is a similarly-scaled model trained on modern web data.
+
+{\bf Evaluation Metrics.} For \humaneval, we use Pass@1 accuracy. For \mmlu, we use standard multiple-choice accuracy. We specifically analyze the ``Few-shot Gain'' (FSG), defined as the percentage point increase per provided example:
+\begin{equation}
+    FSG = \frac{Acc_{n-shot} - Acc_{0-shot}}{n}
+\end{equation}
+Our hypothesis suggests that $FSG$ will be more interpretable in \talkie because $Acc_{0-shot}$ is guaranteed to be near zero for modern tasks.

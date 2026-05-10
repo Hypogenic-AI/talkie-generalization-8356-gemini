@@ -1,0 +1,18 @@
+\section{Introduction}
+\label{sec:intro}
+
+Data contamination is the ``silent killer'' of Large Language Model (LLM) evaluation. As models are trained on increasingly large portions of the internet, finding truly ``unseen'' tasks to test generalization becomes nearly impossible. When a modern model performs well on a benchmark, it is often difficult to determine if it is genuinely \textit{reasoning} or simply \textit{reciting} examples seen during pre-training. This ambiguity undermines our ability to scientifically measure the mechanics of structural generalization.
+
+{\bf Why does this matter?} If we cannot distinguish between memorization and reasoning, we cannot accurately assess the progress of AI capabilities or identify the scaling laws of actual intelligence. There is a growing need for a ``clean room'' environment where modern concepts are guaranteed to be novel to the model.
+
+In this work, we focus on \talkie \cite{radford2026talkie}, a 13B parameter model trained exclusively on text published before 1931. This strict temporal cutoff provides a unique, contamination-free environment for testing generalization. We hypothesize the \hypo principle: that the sparsity and historical limitation of the training data actually make generalization \textit{easier to detect}. Because \talkie lacks any exposure to modern technical concepts (e.g., Python programming, DNA, quantum computing), any success it achieves on these tasks must be due to the abstract mapping of its ``vintage'' knowledge to novel syntaxes.
+
+We empirically test this hypothesis by comparing \talkie with a modern dense-data baseline (\talkieweb). We focus on \humaneval \cite{radford2026talkie} as a primary testbed, given that Python was created in 1991, sixty years after the model's cutoff. Our quantitative preview shows that \talkie exhibits a binary-like transition: 0\% success in \zeroshot settings, rising to 33\% success on simple logic tasks after just 3 shots. This delta is a high-signal indicator of structural generalization that is often obscured in modern models by high baseline performance.
+
+Our main contributions are as follows:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We propose and formalize the \hypo hypothesis, suggesting that data sparsity can be a scientific asset for isolating generalization.
+    \item We empirically demonstrate the \cliff in \talkie, showing a sharp performance drop-off on post-1930 knowledge which validates the model as a contamination-free instrument.
+    \item We provide a comparative analysis of few-shot gains in coding tasks, showing that \talkie's ``generalization slope'' is more discrete and measurable than that of modern models.
+    \item We establish \talkie as a robust baseline for cross-era analogical transfer research.
+\end{itemize}

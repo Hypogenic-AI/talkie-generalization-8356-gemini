@@ -1,0 +1,12 @@
+\section{Related Work}
+\label{sec:related}
+
+Our work sits at the intersection of historical language modeling, representation analysis, and the evaluation of LLM reasoning.
+
+{\bf Historical Language Models.} The release of \talkie \cite{radford2026talkie} represents a shift toward specialized pre-training on curated historical corpora. While most LLMs are evaluated for their modern knowledge, \citet{underwood2025anachronism} argue that pre-training on period-specific prose is essential for simulating historical perspectives without anachronism. Unlike their work, which focuses on historical accuracy, we utilize the historical cutoff as a tool for measuring modern generalization.
+
+{\bf Sparse Representations.} The idea that sparse data can yield structured representations is supported by \citet{mahran2025gpt}, who used sparse autoencoders to identify ``thematic backbones'' in 19th-century models. They found that fundamental human concepts (e.g., gender, kinship) are robustly encoded even in historical data. We build on this by testing whether these stable backbones can serve as the foundation for generalizing to entirely novel technical syntaxes like Python.
+
+{\bf Limits of LLM Reasoning.} Data contamination is a primary concern in the evaluation of reasoning. \citet{salido2025limits} proposed answer modification techniques (e.g., ``None of the above'') to disentangle memorization from logic. They found that even small changes to benchmark patterns can lead to significant performance drops. In contrast to these post-hoc de-contamination methods, our approach with \talkie relies on ``contamination-free by construction,'' where the model's temporal horizon ensures no exposure to the benchmark tasks.
+
+{\bf Generalization Benchmarks.} Standard benchmarks like \humaneval are widely used to measure coding ability. However, for modern models, these benchmarks are often part of the training set. By using a 1930-cutoff model, we can treat \humaneval as a pure test of structural generalization—mapping logical concepts (loops, branches, arithmetic) learned from 1930s prose to a 1990s programming syntax.

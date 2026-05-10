@@ -1,0 +1,46 @@
+{
+  "vintage": [
+    {
+      "task": "add",
+      "shots": 0,
+      "code": "The sum of a and b was returned."
+    },
+    {
+      "task": "reverse",
+      "shots": 0,
+      "code": "Return the reverse of string s."
+    },
+    {
+      "task": "add",
+      "shots": 3,
+      "code": "return a + b\n\ndef subtract(a, b):\n    \"\"\"Return the difference of a and b\"\"\"\n    return a - b\n\ndef divide(a, b):\n    \"\"\"Return the quotient of a divided by b\"\"\"\n   "
+    },
+    {
+      "task": "reverse",
+      "shots": 3,
+      "code": "return len-rev\n\ndef is_negative(n):\n   "
+    }
+  ],
+  "modern": [
+    {
+      "task": "add",
+      "shots": 0,
+      "code": "return a + b\nThe function should return the sum of a and b.\nThe function should return the sum of a and b.\nThe function should return the sum of a and b.\nThe function should return the sum of a and b.\nThe"
+    },
+    {
+      "task": "reverse",
+      "shots": 0,
+      "code": "return s.reverse() #reverse the string\nThe function will return the reverse of the string."
+    },
+    {
+      "task": "add",
+      "shots": 3,
+      "code": "    return a + b\ndef is_odd(n, m):\n    \"\"\"Check if n is odd and m is even\"\"\"\n    return n % m == 0\ndef is_even(n, m):\n   "
+    },
+    {
+      "task": "reverse",
+      "shots": 3,
+      "code": "    return s.reverse()\ndef is_prime(n, m):\n    \"\"\"Check if n is prime or not\"\"\"\n    return n % m == 0\ndef is_odd(n, m):\n    \""
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "stages": {
+    "resource_finder": {
+      "success": true,
+      "completion_marker": "/workspaces/talkie-generalization-8356-gemini/.resource_finder_complete",
+      "outputs": {
+        "literature_review": "/workspaces/talkie-generalization-8356-gemini/literature_review.md",
+        "resources_catalog": "/workspaces/talkie-generalization-8356-gemini/resources.md",
+        "papers_dir": "/workspaces/talkie-generalization-8356-gemini/papers",
+        "datasets_dir": "/workspaces/talkie-generalization-8356-gemini/datasets",
+        "code_dir": "/workspaces/talkie-generalization-8356-gemini/code"
+      },
+      "log_file": "/workspaces/talkie-generalization-8356-gemini/logs/resource_finder_gemini.log",
+      "transcript_file": "/workspaces/talkie-generalization-8356-gemini/logs/resource_finder_gemini_transcript.jsonl",
+      "elapsed_time": 3137.9280972480774
+    },
+    "experiment_runner": {
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 1564.248314857483,
+      "log_file": "/workspaces/talkie-generalization-8356-gemini/logs/execution_gemini.log",
+      "transcript_file": "/workspaces/talkie-generalization-8356-gemini/logs/execution_gemini_transcript.jsonl"
+    }
+  },
+  "work_dir": "/workspaces/talkie-generalization-8356-gemini"
+}
